@@ -9,16 +9,16 @@ class App extends Component {
     balls: 0
   };
 
+  baseHit = () => {
+    this.setState({
+      balls: 0,
+      strikes: 0
+    });
+  };
+
   foulBall = () => {
     this.setState(prevState => ({
       strikes: prevState.strikes < 2 ? prevState.strikes + 1 : prevState.strikes
-    }));
-  };
-
-  ball = () => {
-    this.setState(prevState => ({
-      balls: prevState.balls === 3 ? 0 : prevState.balls + 1,
-      strikes: prevState.balls === 3 ? 0 : prevState.strikes
     }));
   };
 
@@ -29,11 +29,23 @@ class App extends Component {
     }));
   };
 
+  ball = () => {
+    this.setState(prevState => ({
+      balls: prevState.balls === 3 ? 0 : prevState.balls + 1,
+      strikes: prevState.balls === 3 ? 0 : prevState.strikes
+    }));
+  };
+
   render() {
     return (
       <div className="App">
-        <Display />
-        <Dashboard />
+        <Display strikes={this.state.strikes} balls={this.state.balls} />
+        <Dashboard
+          baseHit={this.baseHit}
+          foulBall={this.foulBall}
+          strike={this.strike}
+          ball={this.ball}
+        />
       </div>
     );
   }
