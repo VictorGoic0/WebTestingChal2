@@ -11,6 +11,14 @@ const Display = props => {
         <h2>Balls:</h2>
         <p>{props.balls}</p>
       </div>
+      <div className="score">
+        <h2>Runs</h2>
+        <p>{props.runs}</p>
+      </div>
+      <div className="score">
+        <h2>Outs:</h2>
+        <p>{props.outs}</p>
+      </div>
     </section>
   );
 };
