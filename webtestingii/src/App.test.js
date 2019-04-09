@@ -14,4 +14,11 @@ describe("<App />", () => {
   it("renders successfully", () => {
     render(<App />);
   });
+
+  it("Successfully strikes", () => {
+    const { getAllByText, getByText } = render(<App />);
+    const button = getAllByText(/strike/i)[1];
+    fireEvent.click(button);
+    getByText(/1/);
+  });
 });
